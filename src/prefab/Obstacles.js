@@ -7,7 +7,11 @@ class Obstacle extends Phaser.GameObjects.Sprite{
     update(){
         this.x += this.moveSpeed;
         if(this.x >= game.config.width){
-            this.x = 0;
+            this.x = -70;
         }
+    }
+
+    reset(){
+        this.x = -70;
     }
 }

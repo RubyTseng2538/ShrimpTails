@@ -6,12 +6,14 @@ class Play extends Phaser.Scene{
         this.load.image('bg', './assets/seabackground.jpg');
         this.load.image('shrimp', './assets/shrimp.png');
         this.load.image('rock', './assets/rock.png');
+        this.load.image('eel', './assets/eel.png');
     }
 
     create(){
         this.bg = this.add.tileSprite(0, 0, 640, 480, 'bg').setOrigin(0, 0);
         this.pShrimp = new Shrimp(this, game.config.width-borderPadding-borderUISize, game.config.height/2, 'shrimp').setOrigin(1, 0);
         this.rockObs = new Obstacle(this, 0, game.config.height-borderUISize-borderPadding-30, 'rock').setOrigin(0, 0);
+        this.eel = new Eel(this, -100, game.config.height, 'eel').setOrigin(0, 0);
         keyUp = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
         keyDown = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
         this.gameOver = false;
@@ -45,15 +47,26 @@ class Play extends Phaser.Scene{
             this.bg.tilePositionX -= this.speed;
             this.pShrimp.update();
             this.rockObs.update();
+            this.eel.update();
             this.time += 50;
             if(this.time % 10000 == 0){
                 this.point +=10;
                 this.scoreLeft.text = this.point;
             }
+            if(this.time %200000 == 0 && this.time<1000000){
+                this.speed += 1;
+                this.rockObs.moveSpeed += 1;
+                this.eel.moveSpeed += 1;
+            }
         }
         if(this.checkCollision(this.pShrimp, this.rockObs)){
             this.gameOver = true;
+        }if(this.checkCollision(this.pShrimp, this.eel)){
+            this.gameOver = true;
+        }if(this.checkCollision(this.eel, this.rockObs)){
+            this.rockObs.reset();
         }
+        
     }
 
     checkCollision(shrimp, obs){
