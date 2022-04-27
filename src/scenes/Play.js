@@ -16,6 +16,22 @@ class Play extends Phaser.Scene{
         keyDown = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
         this.gameOver = false;
         this.speed = 0.5;
+        this.point = 0;
+        this.time = 0;
+
+        let scoreConfig = {
+            fontFamily: 'monospace',
+            fontSize: '28px',
+            color: '#000000',
+            align: 'right',
+            padding: {
+                top: 5, 
+                bottom: 5,
+            },
+            fixedWidth: 100
+        }
+
+        this.scoreLeft = this.add.text(borderUISize+borderPadding, borderUISize+borderPadding*2, this.point, scoreConfig);
 
         if(this.gameOver){
             //gameover screen
@@ -29,6 +45,11 @@ class Play extends Phaser.Scene{
             this.bg.tilePositionX -= this.speed;
             this.pShrimp.update();
             this.rockObs.update();
+            this.time += 50;
+            if(this.time % 10000 == 0){
+                this.point +=10;
+                this.scoreLeft.text = this.point;
+            }
         }
         if(this.checkCollision(this.pShrimp, this.rockObs)){
             this.gameOver = true;
