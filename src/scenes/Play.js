@@ -7,6 +7,7 @@ class Play extends Phaser.Scene{
         this.load.image('shrimp', './assets/shrimp.png');
         this.load.image('rock', './assets/rock.png');
         this.load.image('eel', './assets/eel.png');
+        this.load.image('bag', './assets/rock.png');
     }
 
     create(){
@@ -14,6 +15,7 @@ class Play extends Phaser.Scene{
         this.pShrimp = new Shrimp(this, game.config.width-borderPadding-borderUISize, game.config.height/2, 'shrimp').setOrigin(1, 0);
         this.rockObs = new Obstacle(this, 0, game.config.height-borderUISize-borderPadding-30, 'rock').setOrigin(0, 0);
         this.eel = new Eel(this, -100, game.config.height, 'eel').setOrigin(0, 0);
+        this.bag = new Bag(this, -300, 0, 'bag').setOrigin(0, 0);
         keyUp = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
         keyDown = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
         this.gameOver = false;
@@ -47,6 +49,7 @@ class Play extends Phaser.Scene{
             this.bg.tilePositionX -= this.speed;
             this.pShrimp.update();
             this.rockObs.update();
+            this.bag.update();
             this.eel.update();
             this.time += 50;
             if(this.time % 10000 == 0){
@@ -57,13 +60,21 @@ class Play extends Phaser.Scene{
                 this.speed += 1;
                 this.rockObs.moveSpeed += 1;
                 this.eel.moveSpeed += 1;
+                this.bag.moveSpeed += 1;
             }
         }
         if(this.checkCollision(this.pShrimp, this.rockObs)){
             this.gameOver = true;
         }if(this.checkCollision(this.pShrimp, this.eel)){
             this.gameOver = true;
-        }if(this.checkCollision(this.eel, this.rockObs)){
+        }if(this.checkCollision(this.pShrimp, this.bag)){
+            this.gameOver = true;
+        }
+        if(this.checkAdj(this.eel, this.rockObs)){
+            this.rockObs.reset();
+        }if(this.checkAdj(this.eel, this.bag)){
+            this.eel.reset();
+        }if(this.checkAdj(this.bag, this.rockObs)){
             this.rockObs.reset();
         }
         
@@ -74,6 +85,16 @@ class Play extends Phaser.Scene{
            shrimp.x + shrimp.width > obs.x &&
            shrimp.y < obs.y + obs.height &&
            shrimp.height + shrimp.y > obs.y){
+               return true;
+        }else{
+            return false;
+        }
+    }
+    checkAdj(shrimp, obs){
+        if(shrimp.x<obs.x+obs.width +50&&
+           shrimp.x + shrimp.width +50 > obs.x &&
+           shrimp.y < obs.y + obs.height +50&&
+           shrimp.height + shrimp.y +50> obs.y){
                return true;
         }else{
             return false;
