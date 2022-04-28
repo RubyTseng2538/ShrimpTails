@@ -43,7 +43,8 @@ class Play extends Phaser.Scene{
     }
     update(){
         if(this.gameOver){
-            this.scene.start("menuScene");
+            game.config.point = this.point;
+            this.scene.start("creditScene");
         }
         if(!this.gameOver){
             this.bg.tilePositionX -= this.speed;
