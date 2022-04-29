@@ -15,6 +15,7 @@ class Play extends Phaser.Scene{
         this.pShrimp = new Shrimp(this, game.config.width-borderPadding-borderUISize, game.config.height/2, 'shrimp').setOrigin(1, 0);
         this.rockObs = new Obstacle(this, 0, game.config.height-borderUISize-borderPadding-30, 'rock').setOrigin(0, 0);
         this.eel = new Eel(this, -100, game.config.height, 'eel').setOrigin(0, 0);
+        this.rod = new Rod(this, -200, -240, 'eel').setOrigin(0, 0);
         this.bag = new Bag(this, -300, 0, 'bag').setOrigin(0, 0);
         keyUp = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
         keyDown = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
@@ -52,6 +53,7 @@ class Play extends Phaser.Scene{
             this.rockObs.update();
             this.bag.update();
             this.eel.update();
+            this.rod.update();
             this.time += 50;
             if(this.time % 10000 == 0){
                 this.point +=10;
@@ -69,6 +71,8 @@ class Play extends Phaser.Scene{
         }if(this.checkCollision(this.pShrimp, this.eel)){
             this.gameOver = true;
         }if(this.checkCollision(this.pShrimp, this.bag)){
+            this.gameOver = true;
+        }if(this.checkCollision(this.pShrimp, this.rod)){
             this.gameOver = true;
         }
         if(this.checkAdj(this.eel, this.rockObs)){
