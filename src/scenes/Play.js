@@ -15,7 +15,7 @@ class Play extends Phaser.Scene{
         this.pShrimp = new Shrimp(this, game.config.width-borderPadding-borderUISize, game.config.height/2, 'shrimp').setOrigin(1, 0);
         this.rockObs = new Obstacle(this, 0, game.config.height-borderUISize-borderPadding-30, 'rock').setOrigin(0, 0);
         this.eel = new Eel(this, -100, game.config.height, 'eel').setOrigin(0, 0);
-        this.rod = new Rod(this, -200, -240, 'eel').setOrigin(0, 0);
+        this.rod = new Rod(this, -200, -250, 'eel').setOrigin(0, 0);
         this.bag = new Bag(this, -300, 0, 'bag').setOrigin(0, 0);
         keyUp = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
         keyDown = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
