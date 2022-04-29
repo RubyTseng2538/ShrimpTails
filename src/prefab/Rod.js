@@ -4,6 +4,7 @@ class Rod extends Phaser.GameObjects.Sprite{
         scene.add.existing(this);
         this.moveSpeed = 1.5;
         this.up = false;
+        this.timer = 0;
     }
     update(){
         this.x += this.moveSpeed;
@@ -11,13 +12,18 @@ class Rod extends Phaser.GameObjects.Sprite{
             this.x = -1500;
         }
         if(this.y <= 0 && this.up == false){
-            this.y += 0.5;
+            this.y += 3.0;
         }if(this.y > 0){
-           this.up = true;
+            this.y += 0;
+            this.timer += 1;
+            if(this.timer >= 100){
+                this.up = true;
+                this.timer = 0;
+            }
         }if(this.up == true){
-            this.y -= 0.5;
+            this.y -= 3.0;
         }if(this.y <= -240){
-           this.up = false;
+               this.up = false;
         }
 
     }

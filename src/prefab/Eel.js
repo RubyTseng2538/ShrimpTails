@@ -11,11 +11,11 @@ class Eel extends Phaser.GameObjects.Sprite{
             this.x = -1000;
         }
         if(this.y <= game.config.height && this.down == false){
-            this.y -= 1.5;
+            this.y -= 1.0;
         }if(this.y <= 240){
             this.down = true;
         }if(this.down == true){
-            this.y += 1.5;
+            this.y += 1.0;
         }if(this.y >= game.config.height){
             this.down = false;
         }
