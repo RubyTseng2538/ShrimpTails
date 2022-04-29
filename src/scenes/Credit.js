@@ -3,7 +3,7 @@ class Credit extends Phaser.Scene{
         super("creditScene");
     }
     preload(){
-        this.load.image('bg', './assets/seabackground.jpg');
+        this.load.image('bg', './assets/seabackground.png');
     }
 
     create(){

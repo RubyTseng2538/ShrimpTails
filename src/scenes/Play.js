@@ -3,7 +3,7 @@ class Play extends Phaser.Scene{
         super("playScene");
     }
     preload(){
-        this.load.image('bg', './assets/seabackground.jpg');
+        this.load.image('bg', './assets/seabackground.png');
         this.load.image('shrimp', './assets/shrimp.png');
         this.load.image('rock', './assets/rock.png');
         this.load.image('eel', './assets/eel.png');
