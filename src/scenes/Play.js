@@ -12,15 +12,23 @@ class Play extends Phaser.Scene{
         // load animations
         this.load.spritesheet('shrimpswim', './assets/shrimpanimated.png',
                     {frameWidth: 100, frameHeight: 75, startFrame: 0, endFrame: 1});
+        this.load.spritesheet('eelwiggle', './assets/eelanimated.png', 
+                    {frameWidth: 70, frameHeight: 200, startFrame: 0, endFrame: 1});
     }
 
     create(){
         this.bg = this.add.tileSprite(0, 0, 640, 480, 'bg').setOrigin(0, 0);
         this.fg = this.add.tileSprite(0, 0, 640, 480, 'fg').setOrigin(0, 0); // seaweed
-        // set up shrimp animation
+        // set up animations
         this.anims.create({
             key: 'shrimpmove',
             frames: this.anims.generateFrameNumbers('shrimpswim', {start: 0, end: 1, first: 0}),
+            frameRate: 4,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'eelmove',
+            frames: this.anims.generateFrameNumbers('eelwiggle', {start: 0, end: 1, first: 0}),
             frameRate: 4,
             repeat: -1
         });
