@@ -3,11 +3,13 @@ class Obstacle extends Phaser.GameObjects.Sprite{
         super(scene, x, y, texture, frame);
         scene.add.existing(this);
         this.moveSpeed = 1.5;
+        this.anims.play('fishmove');
     }
     update(){
         this.x += this.moveSpeed;
         if(this.x >= game.config.width){
-            this.x = -200;
+            this.x = Phaser.Math.Between(-200, -5000);
+            this.y = Phaser.Math.Between(0, game.config.height);
         }
     }
 

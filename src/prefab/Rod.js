@@ -5,11 +5,12 @@ class Rod extends Phaser.GameObjects.Sprite{
         this.moveSpeed = 1.5;
         this.up = false;
         this.timer = 0;
+        this.anims.play('hookmove');
     }
     update(){
         this.x += this.moveSpeed;
         if(this.x >= game.config.width){
-            this.x = -1500;
+            this.x = Phaser.Math.Between(-1500, -1800);
         }
         if(this.y <= 0 && this.up == false){
             this.y += 3.0;

@@ -4,16 +4,23 @@ class Play extends Phaser.Scene{
     }
     preload(){
         this.load.image('bg', './assets/seabackground.png');
-        this.load.image('fg', './assets/seaweed.png');
         this.load.image('shrimp', './assets/shrimp.png');
+        this.load.image('fg', './assets/seaweed.png');
         this.load.image('rock', './assets/rock.png');
         this.load.image('eel', './assets/eel.png');
-        this.load.image('bag', './assets/rock.png');
+        this.load.image('bag', './assets/plasticbag2.png');
+        this.load.image('hook', './assets/hook2.png');
         // load animations
         this.load.spritesheet('shrimpswim', './assets/shrimpanimated.png',
                     {frameWidth: 100, frameHeight: 75, startFrame: 0, endFrame: 1});
         this.load.spritesheet('eelwiggle', './assets/eelanimated.png', 
-                    {frameWidth: 70, frameHeight: 200, startFrame: 0, endFrame: 1});
+                    {frameWidth: 87.5, frameHeight: 250, startFrame: 0, endFrame: 1});
+        this.load.spritesheet('trashfloat', './assets/plasticbag.png', 
+                    {frameWidth: 100, frameHeight: 100, startFrame: 0, endFrame: 1});
+        this.load.spritesheet('hookup', './assets/hook.png', 
+                    {frameWidth: 35, frameHeight: 250, startFrame: 0, endFrame: 1});
+        this.load.spritesheet('fishswim', './assets/fish.png', 
+                    {frameWidth: 100, frameHeight: 100, startFrame: 0, endFrame: 1});
     }
 
     create(){
@@ -32,11 +39,29 @@ class Play extends Phaser.Scene{
             frameRate: 4,
             repeat: -1
         });
-        
+        this.anims.create({
+            key: 'trashmove',
+            frames: this.anims.generateFrameNumbers('trashfloat', {start: 0, end: 1, first: 0}),
+            frameRate: 4,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'hookmove',
+            frames: this.anims.generateFrameNumbers('hookup', {start: 0, end: 1, first: 0}),
+            frameRate: 4,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'fishmove',
+            frames: this.anims.generateFrameNumbers('fishswim', {start: 0, end: 1, first: 0}),
+            frameRate: 4,
+            repeat: -1
+        });
+
         this.pShrimp = new Shrimp(this, game.config.width-borderPadding-borderUISize, game.config.height/2, 'shrimp').setOrigin(1, 0);
-        this.rockObs = new Obstacle(this, 0, game.config.height-borderUISize-borderPadding-30, 'rock').setOrigin(0, 0);
+        this.rockObs = new Obstacle(this, 0, 100, 'fish').setOrigin(0, 0);
         this.eel = new Eel(this, -100, game.config.height, 'eel').setOrigin(0, 0);
-        this.rod = new Rod(this, -200, -250, 'eel').setOrigin(0, 0);
+        this.rod = new Rod(this, -200, -250, 'hook').setOrigin(0, 0);
         this.bag = new Bag(this, -300, 0, 'bag').setOrigin(0, 0);
         keyUp = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
         keyDown = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
@@ -90,9 +115,10 @@ class Play extends Phaser.Scene{
             }
         }
         if(this.checkCollision(this.pShrimp, this.rockObs)){
+            this.sound.play('chomp');
             this.gameOver = true;
         }if(this.checkCollision(this.pShrimp, this.eel)){
-            this.sound.play('chomp');
+            this.sound.play('shock');
             this.gameOver = true;
         }if(this.checkCollision(this.pShrimp, this.bag)){
             this.sound.play('trash');
@@ -101,9 +127,9 @@ class Play extends Phaser.Scene{
             this.sound.play('fishing');
             this.gameOver = true;
         }
-        if(this.checkAdj(this.eel, this.rockObs)){
+        /*if(this.checkAdj(this.eel, this.rockObs)){
             this.rockObs.reset();
-        }/*if(this.checkAdj(this.eel, this.bag)){
+        }if(this.checkAdj(this.eel, this.bag)){
             this.eel.reset();
         }if(this.checkAdj(this.bag, this.rockObs)){
             this.rockObs.reset();

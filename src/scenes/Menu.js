@@ -8,6 +8,7 @@ class Menu extends Phaser.Scene{
         this.load.audio('chomp', './assets/Chomp.wav');
         this.load.audio('fishing', './assets/Fishing.wav');
         this.load.audio('trash', './assets/Trash_Short.wav');
+        this.load.audio('shock', './assets/Shock.wav');
     }
 
     create(){

@@ -3,12 +3,13 @@ class Bag extends Phaser.GameObjects.Sprite{
         super(scene, x, y, texture, frame);
         scene.add.existing(this);
         this.moveSpeed = 0.5;
+        this.anims.play('trashmove');
     }
 
     update(){
         this.x += this.moveSpeed;
         if(this.x >= game.config.width){
-            this.x = -2000;
+            this.x = Phaser.Math.Between(-2000, -3700)
         }
         this.y += this.moveSpeed;
         if(this.y >= game.config.height){
