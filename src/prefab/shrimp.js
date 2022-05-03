@@ -3,6 +3,7 @@ class Shrimp extends Phaser.GameObjects.Sprite{
         super(scene, x, y, texture, frame);
         scene.add.existing(this);
         this.moveSpeed = 1;
+        this.anims.play('shrimpmove');
     }
 
     update(){

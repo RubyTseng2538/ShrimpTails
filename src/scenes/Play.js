@@ -4,14 +4,35 @@ class Play extends Phaser.Scene{
     }
     preload(){
         this.load.image('bg', './assets/seabackground.png');
+        this.load.image('fg', './assets/seaweed.png');
         this.load.image('shrimp', './assets/shrimp.png');
         this.load.image('rock', './assets/rock.png');
         this.load.image('eel', './assets/eel.png');
         this.load.image('bag', './assets/rock.png');
+        // load animations
+        this.load.spritesheet('shrimpswim', './assets/shrimpanimated.png',
+                    {frameWidth: 100, frameHeight: 75, startFrame: 0, endFrame: 1});
+        this.load.spritesheet('eelwiggle', './assets/eelanimated.png', 
+                    {frameWidth: 70, frameHeight: 200, startFrame: 0, endFrame: 1});
     }
 
     create(){
         this.bg = this.add.tileSprite(0, 0, 640, 480, 'bg').setOrigin(0, 0);
+        this.fg = this.add.tileSprite(0, 0, 640, 480, 'fg').setOrigin(0, 0); // seaweed
+        // set up animations
+        this.anims.create({
+            key: 'shrimpmove',
+            frames: this.anims.generateFrameNumbers('shrimpswim', {start: 0, end: 1, first: 0}),
+            frameRate: 4,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'eelmove',
+            frames: this.anims.generateFrameNumbers('eelwiggle', {start: 0, end: 1, first: 0}),
+            frameRate: 4,
+            repeat: -1
+        });
+        
         this.pShrimp = new Shrimp(this, game.config.width-borderPadding-borderUISize, game.config.height/2, 'shrimp').setOrigin(1, 0);
         this.rockObs = new Obstacle(this, 0, game.config.height-borderUISize-borderPadding-30, 'rock').setOrigin(0, 0);
         this.eel = new Eel(this, -100, game.config.height, 'eel').setOrigin(0, 0);
@@ -49,6 +70,7 @@ class Play extends Phaser.Scene{
         }
         if(!this.gameOver){
             this.bg.tilePositionX -= this.speed;
+            this.fg.tilePositionX -= this.speed * 2;
             this.pShrimp.update();
             this.rockObs.update();
             this.bag.update();

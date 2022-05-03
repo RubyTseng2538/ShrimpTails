@@ -4,6 +4,7 @@ class Eel extends Phaser.GameObjects.Sprite{
         scene.add.existing(this);
         this.moveSpeed = 1.5;
         this.down = false;
+        this.anims.play('eelmove');
     }
     update(){
         this.x += this.moveSpeed;
