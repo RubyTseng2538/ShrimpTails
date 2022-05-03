@@ -28,6 +28,6 @@ class Rod extends Phaser.GameObjects.Sprite{
 
     }
     reset(){
-        this.x = -1000;
+        this.x = Phaser.Math.Between(-1500, -1800);
     }
 }

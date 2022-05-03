@@ -8,11 +8,14 @@ class Bag extends Phaser.GameObjects.Sprite{
     update(){
         this.x += this.moveSpeed;
         if(this.x >= game.config.width){
-            this.x = -5000;
+            this.x = -2000;
         }
         this.y += this.moveSpeed;
         if(this.y >= game.config.height){
             this.y = 0;
         }
+    }
+    reset(){
+        this.x = Phaser.Math.Between(-2000, -3700);
     }
 }

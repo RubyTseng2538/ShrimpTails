@@ -61,6 +61,7 @@ class Play extends Phaser.Scene{
             }
             if(this.time %200000 == 0 && this.time<1000000){
                 this.speed += 1;
+                this.pShrimp.moveSpeed += 1;
                 this.rockObs.moveSpeed += 1;
                 this.eel.moveSpeed += 1;
                 this.bag.moveSpeed += 1;
@@ -69,19 +70,22 @@ class Play extends Phaser.Scene{
         if(this.checkCollision(this.pShrimp, this.rockObs)){
             this.gameOver = true;
         }if(this.checkCollision(this.pShrimp, this.eel)){
+            this.sound.play('chomp');
             this.gameOver = true;
         }if(this.checkCollision(this.pShrimp, this.bag)){
+            this.sound.play('trash');
             this.gameOver = true;
         }if(this.checkCollision(this.pShrimp, this.rod)){
+            this.sound.play('fishing');
             this.gameOver = true;
         }
         if(this.checkAdj(this.eel, this.rockObs)){
             this.rockObs.reset();
-        }if(this.checkAdj(this.eel, this.bag)){
+        }/*if(this.checkAdj(this.eel, this.bag)){
             this.eel.reset();
         }if(this.checkAdj(this.bag, this.rockObs)){
             this.rockObs.reset();
-        }
+        }*/
         
     }
 

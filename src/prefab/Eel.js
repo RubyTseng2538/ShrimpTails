@@ -22,6 +22,6 @@ class Eel extends Phaser.GameObjects.Sprite{
 
     }
     reset(){
-        this.x = -1000;
+        this.x = Phaser.Math.Between(-300, -1200);
     }
 }

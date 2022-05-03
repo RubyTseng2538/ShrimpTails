@@ -12,6 +12,6 @@ class Obstacle extends Phaser.GameObjects.Sprite{
     }
 
     reset(){
-        this.x = -200;
+        this.x = Phaser.Math.Between(-200, -5000);
     }
 }
