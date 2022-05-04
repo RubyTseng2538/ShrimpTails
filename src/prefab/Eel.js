@@ -9,7 +9,7 @@ class Eel extends Phaser.GameObjects.Sprite{
     update(){
         this.x += this.moveSpeed;
         if(this.x >= game.config.width){
-            this.x = -1000;
+            this.x = Phaser.Math.Between(-300, -1200);
         }
         if(this.y <= game.config.height && this.down == false){
             this.y -= 1.0;

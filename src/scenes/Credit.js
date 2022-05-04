@@ -41,6 +41,7 @@ class Credit extends Phaser.Scene{
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
         this.add.text(game.config.width/2, game.config.height/2 +160, 'Press M to menu', creditConfig).setOrigin(0.5);
         keyM = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.M);
+        this.sound.stopByKey('bg_music');
     }
     update(){
         if(Phaser.Input.Keyboard.JustDown(keyR)){

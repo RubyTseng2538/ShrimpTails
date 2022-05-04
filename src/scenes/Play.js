@@ -6,7 +6,7 @@ class Play extends Phaser.Scene{
         this.load.image('bg', './assets/seabackground.png');
         this.load.image('shrimp', './assets/shrimp.png');
         this.load.image('fg', './assets/seaweed.png');
-        this.load.image('rock', './assets/rock.png');
+        this.load.image('fish', './assets/fish2.png');
         this.load.image('eel', './assets/eel.png');
         this.load.image('bag', './assets/plasticbag2.png');
         this.load.image('hook', './assets/hook2.png');
@@ -24,6 +24,17 @@ class Play extends Phaser.Scene{
     }
 
     create(){
+        let musicConfig = {
+            mute: false,
+            volume: 0.2,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: true,
+            delay: 0
+        }
+        let music = this.sound.add('bg_music', musicConfig);
+        music.play();
         this.bg = this.add.tileSprite(0, 0, 640, 480, 'bg').setOrigin(0, 0);
         this.fg = this.add.tileSprite(0, 0, 640, 480, 'fg').setOrigin(0, 0); // seaweed
         // set up animations
@@ -69,6 +80,7 @@ class Play extends Phaser.Scene{
         this.speed = 0.5;
         this.point = 0;
         this.time = 0;
+        this.pause = 0;
 
         let scoreConfig = {
             fontFamily: 'monospace',
