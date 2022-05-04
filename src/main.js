@@ -1,4 +1,8 @@
-/*For our game we wanted to create a cute, simple endless runner. To amplify our game a bit we decided to make one of 
+/*
+Collaborator: Patrick Queiroz, Emery Plyler, Ruby Tseng
+Game title: Shrimp Tail
+Date completed: 5/3/2022
+For our game we wanted to create a cute, simple endless runner. To amplify our game a bit we decided to make one of 
 the obstacles a plastic bag to create a bit of social commentary on pollution. We implemented enemies such as fishing 
 rod, and eels, which are dependent on the position of the enemies. Fishing rod also has a pause before moving back up. 
 While we didn’t use this specific function in game (because it ends up looking buggy), our programmer learned to check
