@@ -108,10 +108,10 @@ class Play extends Phaser.Scene{
             }
             if(this.time %200000 == 0 && this.time<1000000){
                 this.speed += 1;
-                this.pShrimp.moveSpeed += 1;
-                this.rockObs.moveSpeed += 1;
-                this.eel.moveSpeed += 1;
-                this.bag.moveSpeed += 1;
+                this.pShrimp.moveSpeed += 0.5;
+                this.rockObs.moveSpeed += 0.5;
+                this.eel.moveSpeed += 0.5;
+                this.bag.moveSpeed += 0.5;
             }
         }
         if(this.checkCollision(this.pShrimp, this.rockObs)){
