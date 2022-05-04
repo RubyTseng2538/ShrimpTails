@@ -6,10 +6,10 @@ class Menu extends Phaser.Scene{
         this.load.image('title', './assets/title.png');
         this.load.image('bg', './assets/seabackground.png');
         this.load.audio('bg_music', './assets/Background_Music_1.wav');
-        this.load.audio('chomp', './assets/Chomp.wav');
-        this.load.audio('fishing', './assets/Fishing.wav');
-        this.load.audio('trash', './assets/Trash_Short.wav');
-        this.load.audio('shock', './assets/Shock.wav');
+        this.load.audio('chomp', './assets/Fish_2.wav');
+        this.load.audio('fishing', './assets/Hook_2.wav');
+        this.load.audio('trash', './assets/Trash_2.wav');
+        this.load.audio('shock', './assets/eel_2.wav');
     }
 
     create(){
